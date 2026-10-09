@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F8F8F6">
+<title>Paneza Links</title>
+<meta name="description" content="Canais oficiais da Paneza: comunidade de ofertas, site e marketplaces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap">
+<style>
+/* Layout: coluna única estreita (máx 440px), logo → comunidade em bloco escuro → grade de lojas (site em destaque + 2x2) → rodapé */
+:root {
+  --paper: #F8F8F6;      /* off white */
+  --card: #FFFFFF;       /* branco */
+  --sand: #E9E3D8;       /* bege */
+  --sand-deep: #CFC4B2;  /* bege escuro, linhas */
+  --ink: #1C1917;        /* preto */
+  --muted: #7A7268;      /* texto secundário */
+  --font: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-weight: 300;
+  padding: 0 20px;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 440px;
+  margin: 0 auto;
+  padding-block: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Topo */
+header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.logo {
+  font-weight: 300;
+  font-size: clamp(30px, 9vw, 40px);
+  letter-spacing: 0.42em;
+  margin-right: -0.42em; /* compensa o espaçamento da última letra */
+  line-height: 1;
+  color: var(--ink);
+}
+.rule { width: 32px; height: 1px; background: var(--sand-deep); }
+h1 {
+  font-weight: 400;
+  font-size: 19px;
+  margin: 0;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+.lead {
+  margin: -8px 0 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+  font-size: clamp(11.5px, 3.6vw, 14px);
+}
+.lead span { display: block; white-space: nowrap; }
+
+/* Rótulos de seção */
+.label {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+.label::after { content: ""; flex: 1; height: 1px; background: var(--sand-deep); }
+
+/* Comunidade */
+.community {
+  background: var(--sand);
+  color: var(--ink);
+  border-radius: 14px;
+  padding: 24px 22px 22px;
+  display: flex; flex-direction: column; gap: 18px;
+  text-align: center;
+}
+.community p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.community strong { font-weight: 500; color: var(--ink); display: block; font-size: 17px; margin-bottom: 4px; }
+.btn-wa {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 54px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 500; font-size: 16px; letter-spacing: .02em;
+  transition: background .2s, transform .2s;
+}
+.btn-wa:hover { background: #3a3430; }
+.btn-wa:active { transform: scale(.98); }
+.btn-wa svg { width: 22px; height: 22px; flex: none; }
+.btn-wa[aria-disabled="true"] { opacity: .55; pointer-events: none; }
+
+/* Lojas */
+.stores { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.store {
+  position: relative;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 148px;
+  padding: 22px 18px 18px;
+  background: var(--card);
+  border: 1px solid var(--sand);
+  border-radius: 12px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.store:hover { border-color: var(--sand-deep); box-shadow: 0 6px 18px -12px rgba(28,25,23,.35); }
+.store:active { transform: scale(.98); }
+.store .name { font-weight: 500; font-size: 17px; line-height: 1.25; }
+.store .sub { font-size: 12px; color: var(--muted); letter-spacing: .02em; }
+.store:not(.main) { align-items: center; justify-content: center; text-align: center; gap: 4px; min-height: 172px; }
+.store .bag { width: 64px; height: 64px; margin-bottom: 12px; color: var(--c); transition: transform .25s; }
+.store:hover .bag { transform: translateY(-3px); }
+.store.soon { opacity: .6; cursor: default; }
+.store.soon:hover { border-color: var(--sand); box-shadow: none; }
+.store.soon:hover .bag { transform: none; }
+.store.soon .arrow { display: none; }
+.store .arrow { position: absolute; top: 16px; right: 16px; width: 14px; height: 14px; color: var(--sand-deep); transition: color .2s, transform .2s; }
+.store:hover .arrow { color: var(--ink); transform: translate(2px,-2px); }
+
+.store.main {
+  grid-column: 1 / -1;
+  min-height: 0;
+  align-items: center; text-align: center;
+  padding: 38px 16px 30px;
+  gap: 14px;
+  background: var(--card);
+  border-color: var(--ink);
+}
+.store.main:hover { border-color: var(--ink); }
+.store.main .name { font-weight: 300; font-size: 30px; letter-spacing: .38em; margin-right: -.38em; }
+.store.main .sub { letter-spacing: .2em; text-transform: uppercase; font-size: 10.5px; }
+.store.main .arrow { color: var(--muted); }
+
+footer { text-align: center; display: flex; flex-direction: column; gap: 6px; padding-top: 8px; }
+footer p { margin: 0; font-size: 12.5px; color: var(--muted); letter-spacing: .02em; }
+footer small { font-size: 10.5px; color: var(--sand-deep); letter-spacing: .18em; text-transform: uppercase; }
+
+a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="logo" role="img" aria-label="Paneza">PANEZA</div>
+    <span class="rule" aria-hidden="true"></span>
+    <h1>Seu próximo par está aqui.</h1>
+    <p class="lead"><span>Encontre nossos produtos, acompanhe as</span> <span>novidades e aproveite nossas ofertas.</span></p>
+  </header>
+
+  <section aria-labelledby="t-com">
+    <h2 class="label" id="t-com">Entre para nossa comunidade</h2>
+    <div class="community">
+      <p><strong>Ofertas exclusivas te esperando</strong>Lançamentos, cupons e promoções direto no seu WhatsApp.</p>
+      <a class="btn-wa" id="link-comunidade" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/>
+          <path d="M9 8.6c.2-.4.5-.5.8-.5h.4c.2 0 .4.1.5.4l.6 1.4c.1.2 0 .5-.1.6l-.5.6c.6 1.1 1.5 2 2.6 2.6l.6-.5c.2-.1.4-.2.6-.1l1.4.6c.3.1.4.3.4.5v.4c0 .3-.1.6-.5.8-.6.4-1.4.5-2.2.2a8 8 0 0 1-4.6-4.6c-.3-.8-.2-1.6.2-2.2z" fill="currentColor" stroke="none"/>
+        </svg>
+        <span id="txt-comunidade">Entre aqui</span>
+      </a>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-lojas">
+    <h2 class="label" id="t-lojas">Compre na Paneza</h2>
+    <nav class="stores" id="stores"></nav>
+  </section>
+
+  <footer>
+    <p>Paneza conforto, estilo e personalidade.</p>
+    <small>Belo Horizonte · MG</small>
+  </footer>
+</div>
+
+<script>
+/* =========================================================
+   LINKS DA PÁGINA — edite só aqui.
+   Para trocar um link, substitua o endereço entre aspas.
+   Deixe "" (vazio) para esconder uma loja.
+   ========================================================= */
+const LINKS = {
+  comunidade:   "",  // ← cole aqui o link da comunidade/canal do WhatsApp
+  site:         "https://www.paneza.com.br",
+  mercadoLivre: "https://www.mercadolivre.com.br/pagina/paneza#from=share_eshop",
+  shopee:       "https://s.shopee.com.br/6fhvWlMxvX",
+  shein:        "https://onelink.shein.com/56/64jk9z6xdapn?shc=2_RkasONj1mug",
+  tiktok:       "https://vt.tiktok.com/ZSbtumRFM/?page=TikTokShop",
+  netshoes:     "",  // ← cole aqui o link da loja Paneza na Netshoes
+  magalu:       ""   // ← cole aqui o link da loja Paneza no Magalu
+};
+
+const STORES = [
+  { key: "site",         name: "PANEZA",        sub: "paneza.com.br", main: true },
+  { key: "mercadoLivre", name: "Mercado Livre", sub: "Loja oficial", color: "#F2C200" },
+  { key: "shein",        name: "SHEIN",         sub: "Loja oficial", color: "#111111" },
+  { key: "tiktok",       name: "TikTok Shop",   sub: "Loja oficial", color: "#111111" },
+  { key: "shopee",       name: "Shopee",        sub: "Loja oficial", color: "#F4511E" },
+  { key: "netshoes",     name: "Netshoes",      sub: "Loja oficial", color: "#6A1FE0", soon: true },
+  { key: "magalu",       name: "Magalu",        sub: "Loja oficial", color: "#1A6BF0", soon: true }
+];
+
+/* Sacola em contorno, no estilo da sua referência, na cor de cada loja */
+function bag(s) {
+  return '<svg class="bag" viewBox="0 0 64 64" fill="none" stroke="' + s.color + '" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M23 29v-9a9 9 0 0 1 18 0v9"/>' +
+    '<path d="M14.6 24h34.8a3 3 0 0 1 3 2.7l2.3 25.6a4 4 0 0 1-4 4.4H13.3a4 4 0 0 1-4-4.4l2.3-25.6a3 3 0 0 1 3-2.7z"/>' +
+    '<circle cx="23" cy="29" r="2.6" fill="' + s.color + '" stroke="none"/>' +
+    '<circle cx="41" cy="29" r="2.6" fill="' + s.color + '" stroke="none"/>' +
+    '</svg>';
+}
+
+const arrow = '<svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 10L10 4M5 4h5v5"/></svg>';
+const nav = document.getElementById("stores");
+STORES.forEach(s => {
+  const url = (LINKS[s.key] || "").trim();
+  if (!url && !s.soon) return;
+  const a = document.createElement(url ? "a" : "div");
+  if (!url) { a.classList.add("soon"); s = Object.assign({}, s, { sub: "Em breve" }); }
+  a.classList.add("store");
+  if (s.main) a.classList.add("main");
+  if (url) {
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.setAttribute("aria-label", s.name + " — abrir loja");
+  }
+  if (s.color) a.style.setProperty("--c", s.color);
+  a.innerHTML = (s.main ? "" : bag(s)) +
+    '<span class="name">' + s.name + '</span>' +
+    '<span class="sub">' + s.sub + '</span>' + arrow;
+  nav.appendChild(a);
+});
+
+const wa = document.getElementById("link-comunidade");
+if (LINKS.comunidade.trim()) {
+  wa.href = LINKS.comunidade.trim();
+} else {
+  wa.setAttribute("aria-disabled", "true");
+}
+</script>
+</body>
+</html>
