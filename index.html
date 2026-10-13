@@ -92,16 +92,17 @@ h1 {
 .btn-wa {
   display: flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 54px;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--card);
+  color: var(--ink);
+  border: 3.5px solid #25D366;
   border-radius: 10px;
   text-decoration: none;
   font-weight: 500; font-size: 16px; letter-spacing: .02em;
   transition: background .2s, transform .2s;
 }
-.btn-wa:hover, .btn-wa:active, .btn-wa:focus-visible { background: #25D366; color: #FFFFFF; }
+.btn-wa:hover, .btn-wa:active, .btn-wa:focus-visible { background: #EEF9F1; }
 .btn-wa:active { transform: scale(.98); }
-.btn-wa svg { width: 22px; height: 22px; flex: none; }
+.btn-wa svg { width: 22px; height: 22px; flex: none; color: #25D366; }
 .btn-wa[aria-disabled="true"] { opacity: .55; pointer-events: none; }
 
 /* Lojas */
